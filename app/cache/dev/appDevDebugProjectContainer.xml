@@ -3400,7 +3400,7 @@
         </argument>
         <argument type="service">
           <service class="Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider" public="false">
-            <argument>5448a48cc0064</argument>
+            <argument>5448a620d5122</argument>
           </service>
         </argument>
       </argument>
@@ -3684,7 +3684,7 @@
         <argument type="service">
           <service class="Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener" public="false">
             <argument type="service" id="security.context"/>
-            <argument>5448a48cc0064</argument>
+            <argument>5448a620d5122</argument>
             <argument type="service" id="monolog.logger.security" on-invalid="null"/>
           </service>
         </argument>
@@ -3989,6 +3989,14 @@
       <call method="addGlobal">
         <argument>app</argument>
         <argument type="service" id="templating.globals"/>
+      </call>
+      <call method="addGlobal">
+        <argument>siteName</argument>
+        <argument>PrivateSocial</argument>
+      </call>
+      <call method="addGlobal">
+        <argument>siteTagline</argument>
+        <argument>This is a PrivateSocial Website</argument>
       </call>
     </service>
     <service id="twig.translation.extractor" class="Symfony\Bridge\Twig\Translation\TwigExtractor">

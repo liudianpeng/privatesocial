@@ -28,6 +28,9 @@ framework:
 twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
+    globals:
+        siteName:  %site_name%
+        siteTagline: %site_tagline%
 
 # Assetic Configuration
 assetic:

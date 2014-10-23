@@ -1,14 +1,14 @@
-{% extends "SlackissAVShareBundle:layout:base.html.twig" %}
+{% extends "SlackissSocialBundle:layout:base.html.twig" %}
 
 {% block header%}
 {{parent()}}
-<link rel="stylesheet" href="{{asset('bundles/slackissavshare/css/avshare.css')}}">
+<link rel="stylesheet" href="{{asset('bundles/slackisssocial/css/social.css')}}">
 {% endblock %}
 
 {% block body %}
 <div class="container">
 <div class="page-header">
-  <h1>李药王 <small>李药师之兄,色即是空,凭空望潇潇雨歇,抬望眼以治国安邦平天下</small></h1>
+  <h1>{{siteName}} <small>{{siteTagline}}</small></h1>
 </div>
 
 {% if app.request.get('_route') == 'fos_user_registration_register' %}
@@ -18,8 +18,6 @@
 {% if app.request.get('_route') == 'fos_user_security_login' %}
 {% set nav_active = 'login' %}
 {% endif %}
-
-
 
 <nav class="navbar navbar-default" role="navigation">
   <!-- Brand and toggle get grouped for better mobile display -->
@@ -91,7 +89,7 @@
 </div>
 <div class="av-footer">
   <center>
-    关于本站 免责声明 合作伙伴 联系信息
+
   </center>
 </div>
 {% endblock %}

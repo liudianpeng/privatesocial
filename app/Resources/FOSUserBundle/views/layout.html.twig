@@ -1,4 +1,4 @@
-{% extends "SlackissAVShareBundle:layout:layout.html.twig" %}
+{% extends "SlackissSocialBundle:layout:layout.html.twig" %}
 
 {% block title %}
 {% if app.request.get('_route') == 'fos_user_change_password'%}
@@ -43,23 +43,23 @@
   }
 
   input[type="button"], input[type="reset"], input[type="submit"]{
-    margin-top:20px;
-    display:block;
-    background-color: #FFFFFF;
-    border-color: #CCCCCC;
-    color: #333333;
-    -moz-user-select: none;
-    background-image: none;
-    border-radius: 4px 4px 4px 4px;
-    cursor: pointer;
-    font-size: 14px;
-    font-weight: normal;
-    line-height: 1.42857;
-    margin-bottom: 0;
-    padding: 6px 12px;
-    text-align: center;
-    vertical-align: middle;
-    white-space: nowrap;
+  margin-top:20px;
+  display:block;
+  background-color: #FFFFFF;
+  border-color: #CCCCCC;
+  color: #333333;
+  -moz-user-select: none;
+  background-image: none;
+  border-radius: 4px 4px 4px 4px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 1.42857;
+  margin-bottom: 0;
+  padding: 6px 12px;
+  text-align: center;
+  vertical-align: middle;
+  white-space: nowrap;
   }
 </style>
 {% endblock %}

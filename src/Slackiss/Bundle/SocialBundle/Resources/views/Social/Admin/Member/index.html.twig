@@ -1,0 +1,33 @@
+{% extends "SlackissAVShareBundle:layout:layout.html.twig" %}
+
+{% block title %}会员管理{% endblock %}
+
+{% block content %}
+
+<ol class="breadcrumb clearfix">
+  <li><a href="{{path('welcome')}}">主页</a></li>
+  <li class="active"><a href="{{path('avshare_admin_resource')}}">会员管理</a></li>
+</ol>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>用户名</th>
+      <th>电子信箱</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for entity in entities %}
+    <tr>
+      <td>{{ entity.id }}
+      <td>{{ entity.username }}</td>
+      <td>
+        {{entity.email}}
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% endblock %}

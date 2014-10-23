@@ -1,0 +1,21 @@
+{% block form_row %}
+{% spaceless %}
+
+  {% if macro is not defined %}
+      {% import 'SlackissAVShareBundle:common:form_macro.html.twig' as macro %}
+  {% endif %}
+
+<div class="form-group  {{macro.hasErrors(form)}}">
+  {{ form_label(form,null,{'label_attr':{'class':'','style':''}}) }}
+      {% if errors is defined and errors|length > 0 %}
+      <div class="help-block">
+      {% for error in errors %}
+      {{ error.messageTemplate|trans(error.messageParameters, 'validators') }}
+      {% endfor %}
+      </div>
+      {% endif %}
+    {{ form_widget(form, _context) }}
+</div>
+
+{% endspaceless %}
+{% endblock form_row %}

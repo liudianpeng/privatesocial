@@ -1,0 +1,18 @@
+{% extends "SlackissAVShareBundle:layout:layout.html.twig" %}
+
+{% block title %}资源列表{% endblock %}
+
+{% block content %}
+<ol class="breadcrumb clearfix">
+  <li><a href="{{path('welcome')}}">主页</a></li>
+  <li class="active"><a href="{{path('avshare_list')}}">资源列表</a></li>
+</ol>
+
+{% for entity in entities %}
+<a href="{{path('avshare_show',{id:entity.id})}}">
+  <img src="{{vich_uploader_asset(entity,"faceAttach")|imagine_filter('face_image')}}" class="thumbnail img-responsive" />
+</a>
+{% endfor %}
+
+{{ knp_pagination_render(entities) }}
+{% endblock %}

@@ -1,0 +1,17 @@
+parameters:
+    database_driver:   pdo_pgsql
+    database_host:     127.0.0.1
+    database_port:     ~
+    database_name:     privatesocial
+    database_user:     privatesocial
+    database_password: privatesocial
+
+    mailer_transport:  smtp
+    mailer_host:       smtp.163.com
+    mailer_user:       xxx@163.com
+    mailer_password:   xxx
+
+    locale:            zh_CN
+    secret:            PleaseChangeThis
+    site_name:         PrivateSocial
+    site_tagline:      This is a PrivateSocial Website

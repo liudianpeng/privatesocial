@@ -1,0 +1,51 @@
+{% extends "SlackissAVShareBundle:layout:layout.html.twig" %}
+
+{% block title %}{{entity.title}}{% endblock %}
+
+{% block content %}
+
+<ol class="breadcrumb clearfix">
+  <li><a href="{{path('welcome')}}">主页</a></li>
+  <li><a href="{{path('avshare_admin_resource')}}">资源管理</a></li>
+  <li class="active"><a href="{{path('avshare_admin_resource_edit',{id:entity.id})}}">编辑资源</a></li>
+  <li class="pull-right">
+    <a href="{{ path('avshare_admin_resource') }}">
+      返回
+    </a>
+  </li>
+  <li class="pull-right">
+      <a href="{{path('avshare_admin_resource_edit',{id:entity.id})}}">编辑资源</a>
+  </li>
+</ol>
+
+<div class="panel panel-info">
+  <div class="panel panel-heading">
+    {{entity.title}}
+  </div>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-md-2 col-xs-4">
+      <img src="{{vich_uploader_asset(entity,"faceAttach")|imagine_filter('face_image')}}" class="thumbnail img-responsive" />
+      </div>
+      <div class="col-md-10 col-xs-8">
+        {{entity.content|raw}}
+      </div>
+    </div>
+    <hr />
+    <img src="{{vich_uploader_asset(entity,"pictureAttach")}}" class="thumbnail img-responsive" />
+    </div>
+  </div>
+  <div class="panel-footer">
+    <div class="clearfix">
+      <div class="pull-left">
+        {{time_diff(entity.created)}}
+      </div>
+      <div class="pull-right">
+        <a href="{{entity.download}}" target="_blank">
+          <button class="btn btn-info">资源</button>
+        </a>
+        <span class="label label-info">{{ entity.code }}</span>
+      </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends "SlackissAVShareBundle:layout:layout.html.twig" %}
+
+{% block title %}自拍偷拍{% endblock %}
+
+{% block content %}
+<ol class="breadcrumb clearfix">
+  <li><a href="{{path('welcome')}}">主页</a></li>
+  <li class="active"><a href="{{path('avshare_picture')}}">自拍偷拍</a></li>
+</ol>
+
+{% for entity in entities %}
+<div class="clearfix">
+<img src="{{path('avshare_picture_show',{id:entity.id})}}" class="thumbnail img-responsive" />
+<div class="well">
+  {{entity.description|nl2br}}
+</div>
+</div>
+{% endfor %}
+
+{{ knp_pagination_render(entities) }}
+
+<hr />
+<div class="alert alert-warning">
+仅允许上传自拍或偷拍照片，否则直接删帐户
+</div>
+{{form(form)}}
+{% endblock %}

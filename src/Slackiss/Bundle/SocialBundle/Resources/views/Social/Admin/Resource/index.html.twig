@@ -1,0 +1,47 @@
+{% extends "SlackissAVShareBundle:layout:layout.html.twig" %}
+
+{% block title %}资源管理{% endblock %}
+
+{% block content %}
+
+<ol class="breadcrumb clearfix">
+  <li><a href="{{path('welcome')}}">主页</a></li>
+  <li class="active"><a href="{{path('avshare_admin_resource')}}">资源管理</a></li>
+  <li class="pull-right">
+    <a href="{{ path('avshare_admin_resource_new') }}">
+      新建
+    </a>
+  </li>
+</ol>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>标题</th>
+      <th>标题图</th>
+      <th>操作</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for entity in entities %}
+    <tr>
+      <td>{{ entity.id }}
+      <td>{{ entity.title }}</td>
+      <td>
+        <img src="{{vich_uploader_asset(entity,"faceAttach")|imagine_filter('small_face_image')}}" class="thumbnail img-responsive" />
+      </td>
+      <td>{{ entity.download }}</td>
+      <td>{{ entity.code }}</td>
+      <td>
+        <a href="{{ path('avshare_admin_resource_show', { 'id': entity.id }) }}">
+          <button class="btn btn-default">查看</button></a>
+        <a href="{{ path('avshare_admin_resource_edit', { 'id': entity.id }) }}">
+          <button class="btn btn-default">编辑</button></a>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{{ knp_pagination_render(entities) }}
+{% endblock %}

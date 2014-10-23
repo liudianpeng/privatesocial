@@ -1,1 +1,0 @@
-<?php return unserialize('a:1:{i:0;O:45:"Symfony\\Component\\Validator\\Constraints\\Email":4:{s:7:"message";s:30:"请使用合法的电子信箱";s:7:"checkMX";b:1;s:9:"checkHost";b:0;s:6:"groups";a:1:{i:0;s:7:"Default";}}}');

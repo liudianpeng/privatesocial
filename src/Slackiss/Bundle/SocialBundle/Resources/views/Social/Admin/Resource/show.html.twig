@@ -1,4 +1,4 @@
-{% extends "SlackissAVShareBundle:layout:layout.html.twig" %}
+{% extends "SlackissSocialBundle:layout:layout.html.twig" %}
 
 {% block title %}{{entity.title}}{% endblock %}
 
@@ -6,15 +6,15 @@
 
 <ol class="breadcrumb clearfix">
   <li><a href="{{path('welcome')}}">主页</a></li>
-  <li><a href="{{path('avshare_admin_resource')}}">资源管理</a></li>
-  <li class="active"><a href="{{path('avshare_admin_resource_edit',{id:entity.id})}}">编辑资源</a></li>
+  <li><a href="{{path('social_admin_resource')}}">资源管理</a></li>
+  <li class="active"><a href="{{path('social_admin_resource_edit',{id:entity.id})}}">编辑资源</a></li>
   <li class="pull-right">
-    <a href="{{ path('avshare_admin_resource') }}">
+    <a href="{{ path('social_admin_resource') }}">
       返回
     </a>
   </li>
   <li class="pull-right">
-      <a href="{{path('avshare_admin_resource_edit',{id:entity.id})}}">编辑资源</a>
+      <a href="{{path('social_admin_resource_edit',{id:entity.id})}}">编辑资源</a>
   </li>
 </ol>
 
@@ -31,8 +31,6 @@
         {{entity.content|raw}}
       </div>
     </div>
-    <hr />
-    <img src="{{vich_uploader_asset(entity,"pictureAttach")}}" class="thumbnail img-responsive" />
     </div>
   </div>
   <div class="panel-footer">

@@ -6,9 +6,9 @@
 
 <ol class="breadcrumb clearfix">
   <li><a href="{{path('welcome')}}">主页</a></li>
-  <li class="active"><a href="{{path('avshare_admin_resource')}}">资源管理</a></li>
+  <li class="active"><a href="{{path('social_admin_resource')}}">资源管理</a></li>
   <li class="pull-right">
-    <a href="{{ path('avshare_admin_resource_new') }}">
+    <a href="{{ path('social_admin_resource_new') }}">
       新建
     </a>
   </li>
@@ -19,7 +19,7 @@
     <tr>
       <th>ID</th>
       <th>标题</th>
-      <th>标题图</th>
+      <th>封面</th>
       <th>操作</th>
     </tr>
   </thead>
@@ -34,9 +34,9 @@
       <td>{{ entity.download }}</td>
       <td>{{ entity.code }}</td>
       <td>
-        <a href="{{ path('avshare_admin_resource_show', { 'id': entity.id }) }}">
+        <a href="{{ path('social_admin_resource_show', { 'id': entity.id }) }}">
           <button class="btn btn-default">查看</button></a>
-        <a href="{{ path('avshare_admin_resource_edit', { 'id': entity.id }) }}">
+        <a href="{{ path('social_admin_resource_edit', { 'id': entity.id }) }}">
           <button class="btn btn-default">编辑</button></a>
       </td>
     </tr>

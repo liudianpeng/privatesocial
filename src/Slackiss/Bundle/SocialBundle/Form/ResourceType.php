@@ -33,19 +33,7 @@ class ResourceType extends AbstractType
                 ),
             ))
             ->add('faceAttach',null,[
-                'label'=>'标志图',
-                'required'=>true,
-                'attr'=>[
-                ]
-            ])
-            ->add('pictureAttach',null,[
-                'label'=>'详细图0',
-                'required'=>true,
-                'attr'=>[
-                ]
-            ])
-            ->add('picture1Attach',null,[
-                'label'=>'详细图1',
+                'label'=>'封面',
                 'required'=>true,
                 'attr'=>[
                 ]

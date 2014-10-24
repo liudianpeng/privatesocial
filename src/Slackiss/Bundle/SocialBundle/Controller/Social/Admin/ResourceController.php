@@ -21,7 +21,7 @@ class ResourceController extends Controller
     /**
      * Lists all Resource entities.
      *
-     * @Route("/", name="avshare_admin_resource")
+     * @Route("/", name="social_admin_resource")
      * @Method("GET")
      * @Template()
      */
@@ -31,10 +31,9 @@ class ResourceController extends Controller
         $page = $request->query->get('page',1);
         $repo = $em->getRepository('SlackissSocialBundle:Resource');
         $query = $repo->createQueryBuilder('r')
-        ->orderBy('r.id','desc')
-        ->getQuery();
+                      ->orderBy('r.id','desc')
+                      ->getQuery();
         $entities = $this->get('knp_paginator')->paginate($query,$page,20);
-        //$entities = $repo->findAll();
 
         return array(
             'nav_active'=>'admin_resource',
@@ -44,9 +43,9 @@ class ResourceController extends Controller
     /**
      * Creates a new Resource entity.
      *
-     * @Route("/", name="avshare_admin_resource_create")
+     * @Route("/", name="social_admin_resource_create")
      * @Method("POST")
-     * @Template("SlackissSocialBundle:Resource:new.html.twig")
+     * @Template("SlackissSocialBundle:Social/Admin/Resource:new.html.twig")
      */
     public function createAction(Request $request)
     {
@@ -61,7 +60,7 @@ class ResourceController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('avshare_admin_resource_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('social_admin_resource_show', array('id' => $entity->getId())));
         }
 
         return array(
@@ -72,16 +71,16 @@ class ResourceController extends Controller
     }
 
     /**
-    * Creates a form to create a Resource entity.
-    *
-    * @param Resource $entity The entity
-    *
-    * @return \Symfony\Component\Form\Form The form
-    */
+     * Creates a form to create a Resource entity.
+     *
+     * @param Resource $entity The entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
     private function createCreateForm(Resource $entity)
     {
         $form = $this->createForm(new ResourceType(), $entity, array(
-            'action' => $this->generateUrl('avshare_admin_resource_create'),
+            'action' => $this->generateUrl('social_admin_resource_create'),
             'method' => 'POST',
         ));
 
@@ -95,7 +94,7 @@ class ResourceController extends Controller
     /**
      * Displays a form to create a new Resource entity.
      *
-     * @Route("/new", name="avshare_admin_resource_new")
+     * @Route("/new", name="social_admin_resource_new")
      * @Method("GET")
      * @Template()
      */
@@ -116,7 +115,7 @@ class ResourceController extends Controller
     /**
      * Finds and displays a Resource entity.
      *
-     * @Route("/{id}", name="avshare_admin_resource_show")
+     * @Route("/{id}", name="social_admin_resource_show")
      * @Method("GET")
      * @Template()
      */
@@ -142,7 +141,7 @@ class ResourceController extends Controller
     /**
      * Displays a form to edit an existing Resource entity.
      *
-     * @Route("/{id}/edit", name="avshare_admin_resource_edit")
+     * @Route("/{id}/edit", name="social_admin_resource_edit")
      * @Method("GET")
      * @Template()
      */
@@ -169,20 +168,20 @@ class ResourceController extends Controller
     }
 
     /**
-    * Creates a form to edit a Resource entity.
-    *
-    * @param Resource $entity The entity
-    *
-    * @return \Symfony\Component\Form\Form The form
-    */
+     * Creates a form to edit a Resource entity.
+     *
+     * @param Resource $entity The entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
     private function createEditForm(Resource $entity)
     {
         $form = $this->createForm(new ResourceType(), $entity, array(
-            'action' => $this->generateUrl('avshare_admin_resource_update', array('id' => $entity->getId())),
+            'action' => $this->generateUrl('social_admin_resource_update', array('id' => $entity->getId())),
             'method' => 'PUT',
         ));
 
-        $form->add('submit', 'submit', array('label' => '更新','attr'=>[
+        $form->add('submit', 'submit', array('label' => '保存','attr'=>[
             'class'=>'btn btn-primary'
         ]));
 
@@ -191,9 +190,9 @@ class ResourceController extends Controller
     /**
      * Edits an existing Resource entity.
      *
-     * @Route("/{id}", name="avshare_admin_resource_update")
+     * @Route("/{id}", name="social_admin_resource_update")
      * @Method("PUT")
-     * @Template("SlackissSocialBundle:Resource:edit.html.twig")
+     * @Template("SlackissSocialBundle:Social/Admin/Resource:edit.html.twig")
      */
     public function updateAction(Request $request, $id)
     {
@@ -213,7 +212,7 @@ class ResourceController extends Controller
         if ($editForm->isValid()) {
             $em->flush();
 
-            return $this->redirect($this->generateUrl('avshare_admin_resource_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('social_admin_resource_edit', array('id' => $id)));
         }
 
         return array(
@@ -226,7 +225,7 @@ class ResourceController extends Controller
     /**
      * Deletes a Resource entity.
      *
-     * @Route("/{id}", name="avshare_admin_resource_delete")
+     * @Route("/{id}", name="social_admin_resource_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, $id)
@@ -246,7 +245,7 @@ class ResourceController extends Controller
             $em->flush();
         }
 
-        return $this->redirect($this->generateUrl('avshare_admin_resource'));
+        return $this->redirect($this->generateUrl('social_admin_resource'));
     }
 
     /**
@@ -259,12 +258,12 @@ class ResourceController extends Controller
     private function createDeleteForm($id)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('avshare_admin_resource_delete', array('id' => $id)))
-            ->setMethod('DELETE')
+                    ->setAction($this->generateUrl('social_admin_resource_delete', array('id' => $id)))
+                    ->setMethod('DELETE')
                     ->add('submit', 'submit', array('label' => '删除','attr'=>[
                         'class'=>'btn btn-danger'
                     ]))
-            ->getForm()
-        ;
+                    ->getForm()
+            ;
     }
 }

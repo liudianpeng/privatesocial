@@ -23,7 +23,7 @@
         "knplabs/knp-paginator-bundle": "dev-master",
         "knplabs/knp-time-bundle": "dev-master",
         "gedmo/doctrine-extensions": "2.3.*@dev",
-        "vich/uploader-bundle": "dev-master",
+        "vich/uploader-bundle": "0.9",
         "liip/imagine-bundle": "dev-master",
         "simplethings/form-extra-bundle": "dev-master",
         "knplabs/knp-gaufrette-bundle" : "dev-master",

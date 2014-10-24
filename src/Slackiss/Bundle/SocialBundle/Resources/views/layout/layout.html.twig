@@ -39,7 +39,7 @@
       <li class="{% if nav_active|default('')=='picture'%}active{% endif %}"><a href="{{path('social_picture')}}">照片</a></li>
       {% if is_granted('ROLE_ADMIN') %}
       <li class="{% if nav_active|default('')=='admin_member'%}active{% endif %}"><a href="{{path('avshare_admin_member')}}">会员管理</a></li>
-      <li class="{% if nav_active|default('')=='admin_resource'%}active{% endif %}"><a href="{{path('avshare_admin_resource')}}">资源管理</a></li>
+      <li class="{% if nav_active|default('')=='admin_resource'%}active{% endif %}"><a href="{{path('social_admin_resource')}}">资源管理</a></li>
       {% endif %}
       <li class="{% if nav_active|default('')=='logout'%}active{% endif %}"><a href="{{path('fos_user_security_logout')}}">注销</a></li>
       {% else %}

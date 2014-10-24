@@ -40,24 +40,22 @@
       {% if is_granted('ROLE_ADMIN') %}
       <li class="{% if nav_active|default('')=='admin_member'%}active{% endif %}"><a href="{{path('avshare_admin_member')}}">会员管理</a></li>
       <li class="{% if nav_active|default('')=='admin_resource'%}active{% endif %}"><a href="{{path('social_admin_resource')}}">资源管理</a></li>
+      <li class="{% if nav_active|default('')=='admin_setting'%}active{% endif %}"><a href="{{path('social_admin_setting')}}">站点设置</a></li>
       {% endif %}
-      <li class="{% if nav_active|default('')=='logout'%}active{% endif %}"><a href="{{path('fos_user_security_logout')}}">注销</a></li>
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">帐户<b class="caret"></b></a>
+        <ul class="dropdown-menu">
+          <li><a href="#">修改密码</a></li>
+          <li><a href="#">头像设置</a></li>
+          <li><a href="#">个性介绍</a></li>
+          <li class="divider"></li>
+          <li class="{% if nav_active|default('')=='logout'%}active{% endif %}"><a href="{{path('fos_user_security_logout')}}">注销</a></li>
+        </ul>
+      </li>
       {% else %}
       <li class="{% if nav_active|default('')=='login'%}active{% endif %}"><a href="{{path('fos_user_security_login')}}">登录</a></li>
       <li class="{% if nav_active|default('')=='register'%}active{% endif %}"><a href="{{path('fos_user_registration_register')}}">注册</a></li>
       {% endif %}
-      <li class="dropdown hide">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
-        <ul class="dropdown-menu">
-          <li><a href="#">Action</a></li>
-          <li><a href="#">Another action</a></li>
-          <li><a href="#">Something else here</a></li>
-          <li class="divider"></li>
-          <li><a href="#">Separated link</a></li>
-          <li class="divider"></li>
-          <li><a href="#">One more separated link</a></li>
-        </ul>
-      </li>
     </ul>
     <form class="navbar-form navbar-left hide" role="search">
       <div class="form-group">

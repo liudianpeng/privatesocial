@@ -44,7 +44,7 @@ class Member extends BaseUser
     }
 
     /**
-     * @ORM\OneToOne(targetEntity="Member",mappedBy="member")
+     * @ORM\OneToOne(targetEntity="MemberProfile",mappedBy="member")
      * @ORM\JoinColumn(name="member_profile_id",referencedColumnName="id",nullable=true)
      */
     protected $memberProfile;
@@ -108,7 +108,15 @@ class Member extends BaseUser
 
     public function __toString()
     {
-        return $this->getUsername();
+        if($this->getMemberProfile()){
+            if($this->getMemberProfile()->getNickname()){
+                return $this->getMemberProfile()->getNickname();
+            }else{
+                return $this->getUsername();
+            }
+        }else{
+            return $this->getUsername();
+        }
     }
 
     /**
@@ -243,7 +251,7 @@ class Member extends BaseUser
      * @param \Slackiss\Bundle\SocialBundle\Entity\Member $memberProfile
      * @return Member
      */
-    public function setMemberProfile(\Slackiss\Bundle\SocialBundle\Entity\Member $memberProfile = null)
+    public function setMemberProfile(\Slackiss\Bundle\SocialBundle\Entity\MemberProfile $memberProfile = null)
     {
         $this->memberProfile = $memberProfile;
 
@@ -253,7 +261,7 @@ class Member extends BaseUser
     /**
      * Get memberProfile
      *
-     * @return \Slackiss\Bundle\SocialBundle\Entity\Member 
+     * @return \Slackiss\Bundle\SocialBundle\Entity\Member
      */
     public function getMemberProfile()
     {

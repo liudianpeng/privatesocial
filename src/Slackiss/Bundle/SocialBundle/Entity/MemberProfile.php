@@ -7,11 +7,12 @@ use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Validator\Constraints as Assert;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
-
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 /**
  * MemberProfile
  * @Vich\Uploadable
  * @ORM\Table(name="member_profile")
+ * @UniqueEntity(fields={"nickname"},message="请使用站内唯一的昵称")
  * @ORM\Entity(repositoryClass="Slackiss\Bundle\SocialBundle\Entity\MemberProfileRepository")
  */
 class MemberProfile
@@ -33,7 +34,6 @@ class MemberProfile
     private $member;
 
     /**
-     *
      * @ORM\Column(name="string",length=100, nullable=true,unique=true)
      */
     private $nickname;
@@ -46,7 +46,6 @@ class MemberProfile
     private $description;
 
     /**
-     *
      * @ORM\Column(name="avatar",type="string",length=255,nullable=true)
      */
     private $avatar;
@@ -170,7 +169,7 @@ class MemberProfile
     /**
      * Get nickname
      *
-     * @return string 
+     * @return string
      */
     public function getNickname()
     {

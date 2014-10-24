@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 use Slackiss\Bundle\SocialBundle\Entity\Member;
+use Slackiss\Bundle\SocialBundle\Entity\MemberProfile;
 use Slackiss\Bundle\SocialBundle\Form\MemberType;
 
 /**
@@ -61,6 +62,14 @@ class MemberController extends Controller
             }
 
             $userManager->updateUser($member);
+            $memberProfile = new MemberProfile();
+            $memberProfile->setNickname($member->getUsername());
+            $memberProfile->setMember($member);
+            $member->setMemberProfile($memberProfile);
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($memberProfile);
+            $em->persist($member);
+            $em->flush();
             $this->get('session')->getFlashBag()->add('success','创建成功');
             return $this->redirect($this->generateUrl('social_member_list'));
         }
@@ -130,6 +139,15 @@ class MemberController extends Controller
             $userManager = $this->get('fos_user.user_manager');
             $member=$userManager->findUserByEmail($member->getEmail());
             if($member){
+                if(!$member->getMemberProfile()){
+                    $memberProfile = new MemberProfile();
+                    $memberProfile->setNickname($member->getUsername());
+                    $memberProfile->setMember($member);
+                    $member->setMemberProfile($memberProfile);
+                    $em->persist($memberProfile);
+                    $em->persist($member);
+                    $em->flush();
+                }
                 $param['form'] = $this->getEditForm($member)->createView();
                 $param['entity'] = $member;
                 return $param;

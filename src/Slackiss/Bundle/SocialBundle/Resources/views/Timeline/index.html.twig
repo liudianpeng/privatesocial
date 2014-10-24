@@ -4,4 +4,46 @@
 
 {% block content %}
 
+<div class="row">
+
+<div class="col-sm-9">
+  <div class="form">
+
+  </div>
+  <div class="timeline">
+
+    <div class="media">
+      <a class="pull-left" href="#">
+        <img class="media-object" src="..." alt="...">
+      </a>
+      <div class="media-body">
+        <h4 class="media-heading">Media heading</h4>
+
+      </div>
+    </div>
+  </div>
+  {knp_pagination_render(entities)}
+</div>
+
+<div class="col-sm-3">
+  {% if app.user and app.user.memberProfile and app.user.memberProfile.avatar %}
+  <img src="{{vich_uploader_asset(app.user.memberProfile,"avatarAttach")|imagine_filter('avatar_large_image')}}"
+       title="{{app.user.name}}" class="thumbnail img-responsive"/>
+  {% else %}
+  <a href="{{path('profile_edit')}}">请上传头像</a>
+  {% endif %}
+
+  {% if app.user and app.user.memberProfile and app.user.memberProfile.description %}
+  <div class="well">
+    {{app.user.memberProfile.description|nl2br}}
+  </div>
+  {% endif %}
+
+
+  <div style="margin-top:100px;margin-bottom:20px;">
+    {{context.announcement|raw}}
+  </div>
+</div>
+
+</div>
 {% endblock %}

@@ -96,6 +96,10 @@ liip_imagine:
             quality: 75
             filters:
                 thumbnail: { size: [128, 128], mode: outbound }
+        avatar_large_image:
+            quality: 75
+            filters:
+                thumbnail: { size: [256, 256], mode: outbound }
         small_face_image:
             quality: 75
             filters:

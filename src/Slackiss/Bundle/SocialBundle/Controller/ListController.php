@@ -13,7 +13,7 @@ use Slackiss\Bundle\SocialBundle\Form\ResourceType;
 /**
  * Resource controller.
  *
- * @Route("/avshare/list")
+ * @Route("/social/timeline")
  */
 class ListController extends Controller
 {

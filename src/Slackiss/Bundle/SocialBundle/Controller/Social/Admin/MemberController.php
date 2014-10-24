@@ -13,7 +13,7 @@ use Slackiss\Bundle\SocialBundle\Form\ResourceType;
 /**
  * Resource controller.
  *
- * @Route("/avshare/admin/member")
+ * @Route("/admin/member")
  */
 class MemberController extends Controller
 {

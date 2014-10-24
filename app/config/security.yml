@@ -28,8 +28,8 @@ security:
 
     access_control:
         - { path: ^/avid/login$,                 role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/register,                    role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting,                   role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/register,                    role: ROLE_NONE }
         - { path: ^/account,                     role: ROLE_USER }
-        - { path: ^/avshare,                     role: ROLE_USER}
-        - { path: ^/avshare/admin,               role: ROLE_ADMIN }
+        - { path: ^/social,                      role: ROLE_USER}
+        - { path: ^/admin,                       role: ROLE_ADMIN }

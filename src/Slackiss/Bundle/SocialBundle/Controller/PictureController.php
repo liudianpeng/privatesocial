@@ -14,7 +14,7 @@ use Slackiss\Bundle\SocialBundle\Form\PictureType;
 /**
  * Resource controller.
  *
- * @Route("/avshare/picture")
+ * @Route("/social/picture")
  */
 class PictureController extends Controller
 {

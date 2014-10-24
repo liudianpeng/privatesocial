@@ -16,10 +16,6 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-        $param['index1'] = rand(1,34);
-        $param['index2'] = rand(1,34);
-        $param['index3'] = rand(1,34);
-        $param['index4'] = rand(1,34);
-        return $param;
+        return [];
     }
 }

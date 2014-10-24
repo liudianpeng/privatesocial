@@ -13,14 +13,14 @@ use Slackiss\Bundle\SocialBundle\Form\ResourceType;
 /**
  * Resource controller.
  *
- * @Route("/social/timeline")
+ * @Route("/social/resource")
  */
-class ListController extends Controller
+class ResourceController extends Controller
 {
 
     /**
      *
-     * @Route("/", name="avshare_list")
+     * @Route("/", name="social_resource_list")
      * @Method("GET")
      * @Template()
      */
@@ -35,14 +35,14 @@ class ListController extends Controller
         $entities = $this->get('knp_paginator')->paginate($query,$page,20);
 
         return array(
-            'nav_active'=>'list',
+            'nav_active'=>'resource',
             'entities' => $entities,
         );
     }
 
     /**
      *
-     * @Route("/{id}/show", name="avshare_show")
+     * @Route("/{id}/show", name="social_resource_show")
      * @Method("GET")
      * @Template()
      */
@@ -57,7 +57,7 @@ class ListController extends Controller
         }
 
         return array(
-            'nav_active'=>'list',
+            'nav_active'=>'resource',
             'entity' => $entity,
         );
     }

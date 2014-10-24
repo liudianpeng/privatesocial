@@ -1,0 +1,34 @@
+{% extends "SlackissSocialBundle:layout:layout.html.twig" %}
+
+{% block title %}查看资源{% endblock %}
+
+{% block content %}
+
+<div class="panel panel-info">
+  <div class="panel panel-heading">
+    {{entity.title}}
+  </div>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-md-2 col-xs-4">
+        <img src="{{vich_uploader_asset(entity,"faceAttach")|imagine_filter('face_image')}}" class="thumbnail img-responsive" />
+      </div>
+      <div class="col-md-10 col-xs-8">
+        {{entity.content|raw}}
+      </div>
+    </div>
+  </div>
+</div>
+<div class="panel-footer">
+  <div class="clearfix">
+    <div class="pull-left">
+      {{time_diff(entity.created)}}
+    </div>
+    <div class="pull-right">
+      <a href="{{entity.download}}" target="_blank">
+        <button class="btn btn-info">资源</button></a><span class="label label-info">{{ entity.code }}</span>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

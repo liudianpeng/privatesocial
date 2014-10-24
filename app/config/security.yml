@@ -30,6 +30,7 @@ security:
         - { path: ^/avid/login$,                 role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting,                   role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/register,                    role: ROLE_NONE }
+        - { path: ^/profile,                     role: ROLE_USER }
         - { path: ^/account,                     role: ROLE_USER }
         - { path: ^/social,                      role: ROLE_USER}
         - { path: ^/admin,                       role: ROLE_ADMIN }

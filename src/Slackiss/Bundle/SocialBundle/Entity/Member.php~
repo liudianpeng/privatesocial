@@ -1,5 +1,6 @@
 <?php
-namespace Knework\Bundle\CommonBundle\Entity;
+
+namespace Slackiss\Bundle\SocialBundle\Entity;
 
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
@@ -8,21 +9,18 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Validator\Constraints as Assert;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+
 /**
- * @Vich\Uploadable
- * @ORM\Table(name="knework_member")
- * @ORM\Entity(repositoryClass="Knework\Bundle\CommonBundle\Entity\MemberRepository")
+ * @ORM\Table(name="member")
+ * @ORM\Entity(repositoryClass="Slackiss\Bundle\SocialBundle\Entity\MemberRepository")
  * @UniqueEntity(
  *     fields={"username", "email"},
  *     message="用户名和电子信箱不能重复"
  * )
  */
-class Member  extends BaseUser
+class Member extends BaseUser
 {
     const ROLE_USER     = 'ROLE_USER';
-    const ROLE_TALENT   = 'ROLE_TALENT';
-    const ROLE_COMPANY  = 'ROLE_COMPANY';
-    const ROLE_AGENT    = 'ROLE_AGENT';
     const ROLE_ADMIN    = 'ROLE_ADMIN';
     /**
      * @var integer
@@ -43,13 +41,13 @@ class Member  extends BaseUser
         $this->enabled = true;
         $this->status = true;
         $this->remark = "";
-        $this->uid = uniqid(md5(rand()),true);
     }
 
     /**
-     * @ORM\Column(type="string",length=255,name="uid",nullable=false)
+     * @ORM\OneToOne(targetEntity="Member",mappedBy="member")
+     * @ORM\JoinColumn(name="member_profile_id",referencedColumnName="id",nullable=true)
      */
-    protected $uid;
+    protected $memberProfile;
 
     /**
      * @var \DateTime
@@ -59,8 +57,6 @@ class Member  extends BaseUser
     protected $created;
 
     /**
-     *
-     *
      * @ORM\Column(name="modified", type="datetimetz")
      */
     protected $modified;
@@ -74,18 +70,6 @@ class Member  extends BaseUser
      * @ORM\Column(name="remark", type="text",nullable=true)
      */
     protected $remark;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="City")
-     * @ORM\JoinColumn(name="city_id", referencedColumnName="id",nullable=true)
-     */
-    protected $city;
-
-    /**
-     *
-     * @ORM\Column(name="realname",type="string",length=255,nullable=true)
-     */
-    protected $realname;
 
     /**
      * @Assert\NotBlank(message="用户名不可为空")
@@ -121,95 +105,11 @@ class Member  extends BaseUser
     protected $email;
 
 
-    /**
-     *
-     * @ORM\Column(name="avatar",type="string",length=255,nullable=true)
-     */
-    protected $avatar;
-
-    /**
-     *
-     * @ORM\Column(name="avatar_x",type="string",length=255,nullable=true)
-     */
-    protected $avatarX;
-    /**
-     *
-     * @ORM\Column(name="avatar_y",type="string",length=255,nullable=true)
-     */
-    protected $avatarY;
-    /**
-     *
-     * @ORM\Column(name="avatar_w",type="string",length=255,nullable=true)
-     */
-    protected $avatarW;
-    /**
-     *
-     * @ORM\Column(name="avatar_h",type="string",length=255,nullable=true)
-     */
-    protected $avatarH;
-
-    /**
-     * @ORM\Column(name="origin_avatar",type="string",length=255,nullable=true)
-     */
-    protected $originAvatar;
-
-    /**
-     * @Assert\File(
-     *     maxSize="10M",
-     *     mimeTypes={"image/png","image/jpeg","image/pjpeg",
-     *                          "image/jpg","image/gif"}
-     * )
-     * @Vich\UploadableField(mapping="avatar", fileNameProperty="avatar")
-     *
-     * @var File $image
-     */
-    private $avatarAttach;
-
-    public function setAvatarAttach($avatarAttach)
-    {
-        $this->avatarAttach = $avatarAttach;
-        if($avatarAttach){
-            $this->avatar = $avatarAttach->getFileName();
-        }
-        return $this;
-    }
-
-    public function getAvatarAttach()
-    {
-        return $this->avatarAttach;
-    }
-    /**
-     * @Assert\File(
-     *     maxSize="30M",
-     *     mimeTypes={"image/png","image/jpeg","image/pjpeg",
-     *                          "image/jpg","image/gif"}
-     * )
-     * @Vich\UploadableField(mapping="avatar", fileNameProperty="originAvatar")
-     *
-     * @var File $image
-     */
-    private $originAvatarAttach;
-
-    public function setOriginAvatarAttach($originAvatarAttach)
-    {
-        $this->originAvatarAttach = $originAvatarAttach;
-        if($originAvatarAttach){
-            $this->originAvatar = $originAvatarAttach->getFileName();
-        }
-        return $this;
-    }
-
-    public function getOriginAvatarAttach()
-    {
-        return $this->originAvatarAttach;
-    }
-
 
     public function __toString()
     {
-        return $this->getRealname()?$this->getRealname():$this->getUsername();
+        return $this->getUsername();
     }
-
 
     /**
      * Get id
@@ -219,29 +119,6 @@ class Member  extends BaseUser
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set uid
-     *
-     * @param string $uid
-     * @return Member
-     */
-    public function setUid($uid)
-    {
-        $this->uid = $uid;
-
-        return $this;
-    }
-
-    /**
-     * Get uid
-     *
-     * @return string
-     */
-    public function getUid()
-    {
-        return $this->uid;
     }
 
     /**
@@ -359,95 +236,4 @@ class Member  extends BaseUser
         return $this->remark;
     }
 
-    /**
-     * Set city
-     *
-     * @param \Knework\Bundle\CommonBundle\Entity\City $city
-     * @return Member
-     */
-    public function setCity(\Knework\Bundle\CommonBundle\Entity\City $city = null)
-    {
-        $this->city = $city;
-
-        return $this;
-    }
-
-    /**
-     * Get city
-     *
-     * @return \Knework\Bundle\CommonBundle\Entity\City
-     */
-    public function getCity()
-    {
-        return $this->city;
-    }
-
-    /**
-     * Set realname
-     *
-     * @param string $realname
-     * @return Member
-     */
-    public function setRealname($realname)
-    {
-        $this->realname = $realname;
-
-        return $this;
-    }
-
-    /**
-     * Get realname
-     *
-     * @return string
-     */
-    public function getRealname()
-    {
-        return $this->realname?$this->realname:$this->username;
-    }
-
-    /**
-     * Set avatar
-     *
-     * @param string $avatar
-     * @return Member
-     */
-    public function setAvatar($avatar)
-    {
-        $this->avatar = $avatar;
-
-        return $this;
-    }
-
-    /**
-     * Get avatar
-     *
-     * @return string
-     */
-    public function getAvatar()
-    {
-        return $this->avatar;
-    }
-
-    /**
-     * Set originAvatar
-     *
-     * @param string $originAvatar
-     * @return Member
-     */
-    public function setOriginAvatar($originAvatar)
-    {
-        $this->originAvatar = $originAvatar;
-
-        return $this;
-    }
-
-    /**
-     * Get originAvatar
-     *
-     * @return string
-     */
-    public function getOriginAvatar()
-    {
-        return $this->originAvatar;
-    }
 }

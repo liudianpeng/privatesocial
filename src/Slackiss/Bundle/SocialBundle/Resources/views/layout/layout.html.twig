@@ -45,7 +45,7 @@
       <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">帐户<b class="caret"></b></a>
         <ul class="dropdown-menu">
-          <li><a href="#">修改密码</a></li>
+          <li><a href="{{path('fos_user_change_password')}}">修改密码</a></li>
           <li><a href="#">头像设置</a></li>
           <li><a href="#">个性介绍</a></li>
           <li class="divider"></li>
@@ -54,7 +54,6 @@
       </li>
       {% else %}
       <li class="{% if nav_active|default('')=='login'%}active{% endif %}"><a href="{{path('fos_user_security_login')}}">登录</a></li>
-      <li class="{% if nav_active|default('')=='register'%}active{% endif %}"><a href="{{path('fos_user_registration_register')}}">注册</a></li>
       {% endif %}
     </ul>
     <form class="navbar-form navbar-left hide" role="search">

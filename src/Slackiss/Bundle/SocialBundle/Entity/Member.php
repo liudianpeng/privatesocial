@@ -11,7 +11,6 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
- * @Vich\Uploadable
  * @ORM\Table(name="member")
  * @ORM\Entity(repositoryClass="Slackiss\Bundle\SocialBundle\Entity\MemberRepository")
  * @UniqueEntity(
@@ -43,6 +42,12 @@ class Member extends BaseUser
         $this->status = true;
         $this->remark = "";
     }
+
+    /**
+     * @ORM\OneToOne(targetEntity="Member",mappedBy="member")
+     * @ORM\JoinColumn(name="member_profile_id",referencedColumnName="id",nullable=true)
+     */
+    protected $memberProfile;
 
     /**
      * @var \DateTime
@@ -100,37 +105,6 @@ class Member extends BaseUser
     protected $email;
 
 
-    /**
-     *
-     * @ORM\Column(name="avatar",type="string",length=255,nullable=true)
-     */
-    private $avatar;
-
-    /**
-     * @Assert\File(
-     *     maxSize="10M",
-     *     mimeTypes={"image/png","image/jpeg","image/pjpeg",
-     *                          "image/jpg","image/gif"}
-     * )
-     * @Vich\UploadableField(mapping="avatar", fileNameProperty="avatar")
-     *
-     * @var File $image
-     */
-    private $avatarAttach;
-
-    public function setAvatarAttach($avatarAttach)
-    {
-        $this->avatarAttach = $avatarAttach;
-        if($avatarAttach){
-            $this->avatar = $avatarAttach->getFileName();
-        }
-        return $this;
-    }
-
-    public function getAvatarAttach()
-    {
-        return $this->avatarAttach;
-    }
 
     public function __toString()
     {
@@ -262,27 +236,27 @@ class Member extends BaseUser
         return $this->remark;
     }
 
+
     /**
-     * Set avatar
+     * Set memberProfile
      *
-     * @param string $avatar
+     * @param \Slackiss\Bundle\SocialBundle\Entity\Member $memberProfile
      * @return Member
      */
-    public function setAvatar($avatar)
+    public function setMemberProfile(\Slackiss\Bundle\SocialBundle\Entity\Member $memberProfile = null)
     {
-        $this->avatar = $avatar;
+        $this->memberProfile = $memberProfile;
 
         return $this;
     }
 
     /**
-     * Get avatar
+     * Get memberProfile
      *
-     * @return string
+     * @return \Slackiss\Bundle\SocialBundle\Entity\Member 
      */
-    public function getAvatar()
+    public function getMemberProfile()
     {
-        return $this->avatar;
+        return $this->memberProfile;
     }
-
 }

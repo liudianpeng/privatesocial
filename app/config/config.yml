@@ -117,13 +117,13 @@ vich_uploader:
         avatar:
             namer: vich_uploader.namer_uniqid
             uri_prefix: /assets/avatar
-            upload_destination: %kernel.root_dir%/../web/assets/avatar
+            upload_destination: %kernel.root_dir%/../data/assets/avatar
             delete_on_remove: true
             inject_on_load: true
         resource:
             namer: vich_uploader.namer_uniqid
             uri_prefix: /assets/resource
-            upload_destination: %kernel.root_dir%/../web/assets/resource
+            upload_destination: %kernel.root_dir%/../data/assets/resource
             delete_on_remove: true
             inject_on_load: true
         picture:

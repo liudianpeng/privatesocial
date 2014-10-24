@@ -2,27 +2,51 @@
 
 {% block title %}时间线{% endblock %}
 
+{% block header %}
+{{parent()}}
+<style>
+.timeline-content textarea{
+    padding:10px;
+    font-size:120%;
+    font-weight:bold;
+    color:#696969;
+    overflow: auto;
+    height:46px;
+}
+</style>
+{% endblock %}
+
 {% block content %}
 
 <div class="row">
-
 <div class="col-sm-9">
-  <div class="form">
-
+  <div class="row">
+    {{form_start(form)}}
+    <div class="col-sm-10 timeline-content">
+      {{form_widget(form.content)}}
+    </div>
+    <div class="col-sm-2">
+      <input type="submit" name="submit" value="发布" class="btn btn-lg btn-default" />
+    </div>
+    {{form_end(form)}}
   </div>
   <div class="timeline">
-
-    <div class="media">
+    {% for entity in entities %}
+    <div class="media" style="margin-top:20px">
       <a class="pull-left" href="#">
         <img class="media-object" src="..." alt="...">
       </a>
       <div class="media-body">
-        <h4 class="media-heading">Media heading</h4>
-
+        <h4 class="hide media-heading"></h4>
+        {% if entity.picture %}
+        <img src="{{path('social_picture_show',{id:entity.picture.id})}}" class="thumbnail img-responsive" />
+        {% endif %}
+        {{entity.content|default('')|nl2br}}
       </div>
     </div>
+    {% endfor %}
   </div>
-  {knp_pagination_render(entities)}
+  {{knp_pagination_render(entities)}}
 </div>
 
 <div class="col-sm-3">

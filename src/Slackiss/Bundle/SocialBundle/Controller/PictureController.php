@@ -9,6 +9,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Slackiss\Bundle\SocialBundle\Entity\Picture;
+use Slackiss\Bundle\SocialBundle\Entity\Timeline;
 use Slackiss\Bundle\SocialBundle\Form\PictureType;
 
 /**
@@ -32,7 +33,7 @@ class PictureController extends Controller
                       ->orderBy('r.id','desc')
                       ->getQuery();
         $page = $request->query->get('page',1);
-        $entities = $this->get('knp_paginator')->paginate($query,$page,2);
+        $entities = $this->get('knp_paginator')->paginate($query,$page,20);
 
         $picture = new Picture();
         $form = $this->createPictureForm($picture);

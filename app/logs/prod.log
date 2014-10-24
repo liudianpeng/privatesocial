@@ -1,7 +1,0 @@
-[2014-10-23 14:14:50] request.INFO: Matched route "liip_imagine_filter" (parameters: "_controller": "liip_imagine.controller:filterAction", "filter": "face_image", "path": "bundles/slackissavshare/images/index/19. .jpg", "_route": "liip_imagine_filter") [] []
-[2014-10-23 14:14:54] security.INFO: Populated SecurityContext with an anonymous Token [] []
-[2014-10-23 14:14:50] request.INFO: Matched route "liip_imagine_filter" (parameters: "_controller": "liip_imagine.controller:filterAction", "filter": "face_image", "path": "bundles/slackissavshare/images/index/12. .jpg", "_route": "liip_imagine_filter") [] []
-[2014-10-23 14:14:54] security.INFO: Populated SecurityContext with an anonymous Token [] []
-[2014-10-23 14:14:55] request.CRITICAL: Uncaught PHP Exception Symfony\Component\Filesystem\Exception\IOException: "Failed to create "/vagrant/avshare/app/../web/media/cache/face_image/bundles/slackissavshare/images/index": mkdir(): File exists." at /vagrant/avshare/vendor/symfony/symfony/src/Symfony/Component/Filesystem/Filesystem.php line 88 {"exception":"[object] (Symfony\\Component\\Filesystem\\Exception\\IOException: Failed to create \"/vagrant/avshare/app/../web/media/cache/face_image/bundles/slackissavshare/images/index\": mkdir(): File exists. at /vagrant/avshare/vendor/symfony/symfony/src/Symfony/Component/Filesystem/Filesystem.php:88)"} []
-[2014-10-23 14:14:56] security.DEBUG: Write SecurityContext in the session [] []
-[2014-10-23 14:14:56] security.DEBUG: Write SecurityContext in the session [] []

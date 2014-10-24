@@ -28,13 +28,14 @@
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
     </button>
-    <a class="navbar-brand" href="{{path('welcome')}}">主页</a>
+    <a class="navbar-brand {% if nav_active|default('')=='welcome'%}active{% endif %}" href="{{path('welcome')}}">主页</a>
   </div>
 
   <!-- Collect the nav links, forms, and other content for toggling -->
   <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
     <ul class="nav navbar-nav">
       {% if app.user %}
+      <li class="{% if nav_active|default('')=='timeline'%}active{% endif %}"><a href="{{path('timeline')}}">时间线</a></li>
       <li class="{% if nav_active|default('')=='resource'%}active{% endif %}"><a href="{{path('social_resource_list')}}">资源列表</a></li>
       <li class="{% if nav_active|default('')=='picture'%}active{% endif %}"><a href="{{path('social_picture')}}">照片</a></li>
       {% if is_granted('ROLE_ADMIN') %}

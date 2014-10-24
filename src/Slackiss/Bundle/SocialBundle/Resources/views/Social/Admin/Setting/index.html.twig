@@ -7,6 +7,10 @@
 <div class="form">
 <form method="POST" action="{{path('social_admin_setting_update')}}">
   <div class="form-group">
+    <label for="index">主页</label>
+    <textarea name="index" rows=12 class="form-control">{{index}}</textarea>
+  </div>
+  <div class="form-group">
     <label for="announcement">站内公告</label>
     <textarea name="announcement" rows=8 class="form-control">{{announcement}}</textarea>
   </div>

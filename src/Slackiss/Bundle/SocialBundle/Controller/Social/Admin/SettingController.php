@@ -27,8 +27,10 @@ class SettingController extends Controller
         $optionService = $this->get('slackiss_social.option');
         $ann    = $optionService->get('announcement');
         $footer = $optionService->get('footer');
+        $index  = $optionService->get('index');
         $param['announcement'] = $ann;
         $param['footer']       = $footer;
+        $param['index']        = $index;
         return $param;
     }
 
@@ -43,8 +45,10 @@ class SettingController extends Controller
         $optionService = $this->get('slackiss_social.option');
         $announcement  = $request->request->get('announcement');
         $footer        = $request->request->get('footer');
+        $index         = $request->request->get('index');
         $optionService->set('announcement',$announcement);
         $optionService->set('footer',$footer);
+        $optionService->set('index',$index);
         return $this->redirect($this->generateUrl('social_admin_setting'));
     }
 

@@ -16,6 +16,11 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-        return [];
+        $securityContext = $this->container->get('security.context');
+        if ($securityContext->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
+            return $this->redirect($this->generateUrl('timeline'));
+        }else{
+            return ['nav_active'=>'welcome'];
+        }
     }
 }

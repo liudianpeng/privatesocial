@@ -26,4 +26,9 @@ class TwigContext
     {
         return $this->optionService->get('footer');
     }
+
+    public function index()
+    {
+        return $this->optionService->get('index');
+    }
 }

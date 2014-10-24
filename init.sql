@@ -1,14 +1,13 @@
-create user avshare with password 'avshare123' ;
+create user privatesocial with password 'privatesocial123' ;
 
-ALTER USER avshare WITH PASSWORD 'avshare123';
+ALTER USER privatesocial WITH PASSWORD 'privatesocial123';
 
-create database avshare with encoding='utf8' ;
+create database privatesocial with encoding='utf8' ;
 
-grant all privileges on database avshare to avshare ;
+grant all privileges on database privatesocial to privatesocial ;
 
-\connect avshare;
+\connect privatesocial;
 
-alter database avshare owner to avshare;
+alter database privatesocial owner to privatesocial;
 
-alter schema public owner to avshare;
-
+alter schema public owner to privatesocial;

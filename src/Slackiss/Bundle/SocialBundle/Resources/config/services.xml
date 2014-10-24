@@ -8,5 +8,9 @@
         <service id="slackiss_social.option" class="Slackiss\Bundle\SocialBundle\Service\OptionService">
             <argument type="service" id="doctrine.orm.entity_manager">em</argument>
         </service>
+        <service id="slackiss_social.twig_context" class="Slackiss\Bundle\SocialBundle\Service\TwigContext">
+            <argument type="service" id="doctrine.orm.entity_manager">em</argument>
+            <argument type="service" id="slackiss_social.option">optionService</argument>
+        </service>
     </services>
 </container>

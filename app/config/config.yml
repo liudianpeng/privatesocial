@@ -31,7 +31,7 @@ twig:
     globals:
         siteName:  %site_name%
         siteTagline: %site_tagline%
-
+        context: "@slackiss_social.twig_context"
 # Assetic Configuration
 assetic:
     debug:          "%kernel.debug%"

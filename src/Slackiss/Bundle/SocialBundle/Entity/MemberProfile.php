@@ -28,7 +28,7 @@ class MemberProfile
 
     /**
      * @var string
-     * @ORM\OneToOne(targetEntity="Member",inversedBy="member")
+     * @ORM\OneToOne(targetEntity="Member",inversedBy="memberProfile")
      * @ORM\JoinColumn(name="member_id",referencedColumnName="id",unique=true)
      */
     private $member;

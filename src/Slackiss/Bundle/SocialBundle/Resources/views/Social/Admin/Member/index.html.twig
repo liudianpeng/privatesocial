@@ -37,13 +37,11 @@
       {% endif %}
     </td>
     <td>
-      {% if not entity.hasRole('ROLE_ADMIN') and  not entity.hasRole('ROLE_DEV') %}
       <a href="{{path('social_member_edit',{id:entity.id})}}"><button class="btn btn-default">编辑</button></a>
       {% if entity.enabled %}
       <a href="{{path('social_member_delete',{id:entity.id})}}" onclick="return confirm('您确定要禁用{{entity.username}}吗？')"><button class="btn btn-default">禁用</button></a>
       {% else %}
       <a href="{{path('social_member_enable',{id:entity.id})}}" onclick="return confirm('您确定要启用{{entity.username}}吗？')"><button class="btn btn-default">启用</button></a>
-      {% endif %}
       {% endif %}
     </td>
   </tr>

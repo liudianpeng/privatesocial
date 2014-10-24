@@ -104,9 +104,7 @@ class Member extends BaseUser
      */
     protected $email;
 
-
-
-    public function __toString()
+    public function getName()
     {
         if($this->getMemberProfile()){
             if($this->getMemberProfile()->getNickname()){
@@ -117,6 +115,11 @@ class Member extends BaseUser
         }else{
             return $this->getUsername();
         }
+    }
+
+    public function __toString()
+    {
+        return $this->getUsername();
     }
 
     /**

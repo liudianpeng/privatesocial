@@ -77,6 +77,12 @@ class PictureController extends Controller
             $picture->setMember($current);
             $em->persist($picture);
             $em->flush();
+            $timeline = new Timeline();
+            $timeline->setMember($current);
+            $timeline->setPicture($picture);
+            $timeline->setContent($picture->getDescription());
+            $em->persist($timeline);
+            $em->flush();
             return $this->redirect($this->generateUrl('social_picture'));
         }
         return array(

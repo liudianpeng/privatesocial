@@ -23,7 +23,31 @@ class SettingController extends Controller
      */
     public function indexAction(Request $request)
     {
-        $param =  array();
+        $param =  array('nav_active'=>'admin_setting');
+        $optionService = $this->get('slackiss_social.option');
+        $ann    = $optionService->get('announcement');
+        $footer = $optionService->get('footer');
+        $param['announcement'] = $ann;
+        $param['footer']       = $footer;
         return $param;
     }
+
+    /**
+     * @Route("/update",name="social_admin_setting_update")
+     * @Method({"POST"})
+     * @Template()
+     */
+    public function updateAction(Request $request)
+    {
+        $param =  array();
+        $optionService = $this->get('slackiss_social.option');
+        $announcement  = $request->request->get('announcement');
+        $footer        = $request->request->get('footer');
+        $optionService->set('announcement',$announcement);
+        $optionService->set('footer',$footer);
+        return $this->redirect($this->generateUrl('social_admin_setting'));
+    }
+
+
+
 }

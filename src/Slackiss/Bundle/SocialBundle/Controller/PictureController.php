@@ -21,7 +21,7 @@ class PictureController extends Controller
 
     /**
      *
-     * @Route("/", name="avshare_picture")
+     * @Route("/", name="social_picture")
      * @Method("GET")
      * @Template()
      */
@@ -48,7 +48,7 @@ class PictureController extends Controller
     {
         $formType = new PictureType();
         $form = $this->createForm($formType,$picture,[
-            'action'=>$this->generateUrl('avshare_picture_upload'),
+            'action'=>$this->generateUrl('social_picture_upload'),
             'method'=>'POST'
         ]);
         return $form;
@@ -56,7 +56,7 @@ class PictureController extends Controller
 
     /**
      *
-     * @Route("/upload", name="avshare_picture_upload")
+     * @Route("/upload", name="social_picture_upload")
      * @Method("POST")
      * @Template()
      */
@@ -78,7 +78,7 @@ class PictureController extends Controller
             $picture->setMember($current);
             $em->persist($picture);
             $em->flush();
-            return $this->redirect($this->generateUrl('avshare_picture'));
+            return $this->redirect($this->generateUrl('social_picture'));
         }
         return array(
             'form'      =>$form->createView(),
@@ -89,7 +89,7 @@ class PictureController extends Controller
 
     /**
      *
-     * @Route("/{id}/show", name="avshare_picture_show")
+     * @Route("/{id}/show", name="social_picture_show")
      * @Method("GET")
      * @Template()
      */

@@ -6,7 +6,7 @@ slackiss_av_share:
 # app/config/routing.yml
 fos_user_security:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"
-    prefix: /avid
+    prefix: /
 
 fos_user_profile:
     resource: "@FOSUserBundle/Resources/config/routing/profile.xml"

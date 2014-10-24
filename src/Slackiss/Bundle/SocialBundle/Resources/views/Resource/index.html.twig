@@ -5,8 +5,9 @@
 {% block content %}
 
 {% for entity in entities %}
+
 <a href="{{path('social_resource_show',{id:entity.id})}}">
-  <img src="{{vich_uploader_asset(entity,"faceAttach")|imagine_filter('face_image')}}" class="thumbnail img-responsive" />
+  <img src="{{path('social_resource_pic_show',{id:entity.id})}}" class="thumbnail img-responsive" style="max-height:150px"/>
 </a>
 {% endfor %}
 {{ knp_pagination_render(entities) }}

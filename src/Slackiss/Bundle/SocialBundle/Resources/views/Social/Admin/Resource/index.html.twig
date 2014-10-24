@@ -19,7 +19,6 @@
     <tr>
       <th>ID</th>
       <th>标题</th>
-      <th>封面</th>
       <th>操作</th>
     </tr>
   </thead>
@@ -28,11 +27,6 @@
     <tr>
       <td>{{ entity.id }}
       <td>{{ entity.title }}</td>
-      <td>
-        <img src="{{vich_uploader_asset(entity,"faceAttach")|imagine_filter('small_face_image')}}" class="thumbnail img-responsive" />
-      </td>
-      <td>{{ entity.download }}</td>
-      <td>{{ entity.code }}</td>
       <td>
         <a href="{{ path('social_admin_resource_show', { 'id': entity.id }) }}">
           <button class="btn btn-default">查看</button></a>

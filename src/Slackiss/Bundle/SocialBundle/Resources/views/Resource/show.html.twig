@@ -11,7 +11,7 @@
   <div class="panel-body">
     <div class="row">
       <div class="col-md-2 col-xs-4">
-        <img src="{{vich_uploader_asset(entity,"faceAttach")|imagine_filter('face_image')}}" class="thumbnail img-responsive" />
+        <img src="{{path('social_resource_pic_show',{id:entity.id})}}" class="thumbnail img-responsive" style="max-height:150px"/>
       </div>
       <div class="col-md-10 col-xs-8">
         {{entity.content|raw}}

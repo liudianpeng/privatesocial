@@ -30,11 +30,20 @@
     </div>
     {{form_end(form)}}
   </div>
-  <div class="timeline">
+  <div class="timeline media-list">
     {% for entity in entities %}
-    <div class="media" style="margin-top:20px">
+    <div class="media" style="margin-top:20px;padding:10px 0px;border-bottom:2px dotted #EEEEEE">
       <a class="pull-left" href="#">
-        <img class="media-object" src="..." alt="...">
+        {% if entity.member.memberProfile
+              and entity.member.memberProfile.avatar %}
+        <img class="thumbnail img-responsive media-object"
+             src="{{path('social_member_avatar',{id:entity.member.memberProfile.id})}}"
+             alt="{{entity.member.name}}" style="max-width:128px"/>
+        {% else %}
+        <img class="thumbnail img-responsive media-object" style="max-width:128px"
+             src="{{asset('bundles/slackisssocial/images/avatar.png')}}"
+             alt="{{entity.member.name}}" />
+        {% endif %}
       </a>
       <div class="media-body">
         <h4 class="hide media-heading"></h4>
@@ -42,6 +51,8 @@
         <img src="{{path('social_picture_show',{id:entity.picture.id})}}" class="thumbnail img-responsive" />
         {% endif %}
         {{entity.content|default('')|nl2br}}
+        <br />
+        <small style="color:#696969">{{entity.member.name}}发布于{{time_diff(entity.created)}}</small>
       </div>
     </div>
     {% endfor %}
@@ -51,8 +62,9 @@
 
 <div class="col-sm-3">
   {% if app.user and app.user.memberProfile and app.user.memberProfile.avatar %}
-  <img src="{{vich_uploader_asset(app.user.memberProfile,"avatarAttach")|imagine_filter('avatar_large_image')}}"
-       title="{{app.user.name}}" class="thumbnail img-responsive"/>
+  <img class="thumbnail img-responsive"
+       src="{{path('social_member_avatar',{id:app.user.memberProfile.id})}}"
+       title="{{app.user.name}}"/>
   {% else %}
   <a href="{{path('profile_edit')}}">请上传头像</a>
   {% endif %}

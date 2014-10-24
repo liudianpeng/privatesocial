@@ -38,7 +38,7 @@
       <li class="{% if nav_active|default('')=='resource'%}active{% endif %}"><a href="{{path('social_resource_list')}}">资源列表</a></li>
       <li class="{% if nav_active|default('')=='picture'%}active{% endif %}"><a href="{{path('social_picture')}}">照片</a></li>
       {% if is_granted('ROLE_ADMIN') %}
-      <li class="{% if nav_active|default('')=='admin_member'%}active{% endif %}"><a href="{{path('avshare_admin_member')}}">会员管理</a></li>
+      <li class="{% if nav_active|default('')=='admin_member'%}active{% endif %}"><a href="{{path('social_member_list')}}">会员管理</a></li>
       <li class="{% if nav_active|default('')=='admin_resource'%}active{% endif %}"><a href="{{path('social_admin_resource')}}">资源管理</a></li>
       <li class="{% if nav_active|default('')=='admin_setting'%}active{% endif %}"><a href="{{path('social_admin_setting')}}">站点设置</a></li>
       {% endif %}

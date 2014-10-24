@@ -1,0 +1,20 @@
+{% extends "SlackissSocialBundle:layout:layout.html.twig" %}
+{% block title %}
+会员管理
+{% endblock %}
+{% block content %}
+<div class="page-header">
+  <h2>会员管理 <small></small></h2>
+</div>
+<ol class="breadcrumb clearfix">
+  <li><a href="{{path('social_member_list')}}">会员管理</a></li>
+  <li class="active">
+    <a href="{{path('social_member_edit',{id:entity.id})}}">编辑会员</a>
+  </li>
+  <li class="pull-right">
+    <a href="{{path('social_member_list')}}">返回</a>
+  </li>
+</ol>
+{% form_theme form "SlackissSocialBundle:common:form_theme.html.twig" %}
+{{form(form)}}
+{% endblock %}

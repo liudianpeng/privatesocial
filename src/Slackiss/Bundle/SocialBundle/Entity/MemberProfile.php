@@ -8,12 +8,13 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Validator\Constraints as Assert;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+
 /**
  * MemberProfile
  * @Vich\Uploadable
  * @ORM\Table(name="member_profile")
- * @UniqueEntity(fields={"nickname"},message="请使用站内唯一的昵称")
  * @ORM\Entity(repositoryClass="Slackiss\Bundle\SocialBundle\Entity\MemberProfileRepository")
+ * @UniqueEntity(fields={"nickname"},message="请使用站内唯一的昵称")
  */
 class MemberProfile
 {
@@ -57,9 +58,8 @@ class MemberProfile
      *                          "image/jpg","image/gif"}
      * )
      * @Vich\UploadableField(mapping="avatar", fileNameProperty="avatar")
-     * @var File $image
      */
-    private $avatarAttach;
+    protected $avatarAttach;
 
     public function setAvatarAttach($avatarAttach)
     {

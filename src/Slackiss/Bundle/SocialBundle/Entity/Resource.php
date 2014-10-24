@@ -35,13 +35,8 @@ class Resource
         $this->enabled = true;
         $this->status = true;
         $this->remark = "";
-        $this->uid = uniqid(md5(rand()),true);
     }
 
-    /**
-     * @ORM\Column(type="string",length=255,name="uid",nullable=false)
-     */
-    protected $uid;
     /**
      * @var string
      * @Assert\NotBlank(message="资源标题不能为空")
@@ -95,74 +90,6 @@ class Resource
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="picture", type="string", length=255,nullable=true)
-     */
-    private $picture;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="picture1", type="string", length=255,nullable=true)
-     */
-    private $picture1;
-
-
-    /**
-     * @Assert\File(
-     *     maxSize="10M",
-     *     mimeTypes={"image/png","image/jpeg","image/pjpeg",
-     *                          "image/jpg","image/gif"}
-     * )
-     * @Vich\UploadableField(mapping="resource", fileNameProperty="picture")
-     *
-     * @var File $image
-     */
-    private $pictureAttach;
-
-    public function setPictureAttach($pictureAttach)
-    {
-        $this->pictureAttach = $pictureAttach;
-        if($pictureAttach){
-            $this->picture = $pictureAttach->getFileName();
-        }
-        return $this;
-    }
-
-    public function getPictureAttach()
-    {
-        return $this->pictureAttach;
-    }
-
-
-    /**
-     * @Assert\File(
-     *     maxSize="10M",
-     *     mimeTypes={"image/png","image/jpeg","image/pjpeg",
-     *                          "image/jpg","image/gif"}
-     * )
-     * @Vich\UploadableField(mapping="resource", fileNameProperty="picture1")
-     *
-     * @var File $image
-     */
-    private $picture1Attach;
-
-    public function setPicture1Attach($picture1Attach)
-    {
-        $this->picture1Attach = $picture1Attach;
-        if($picture1Attach){
-            $this->picture1 = $picture1Attach->getFileName();
-        }
-        return $this;
-    }
-
-    public function getPicture1Attach()
-    {
-        return $this->picture1Attach;
-    }
-
-    /**
-     * @var string
      * @ORM\ManyToOne(targetEntity="Member")
      * @ORM\JoinColumn(name="member_id",referencedColumnName="id")
      */
@@ -212,12 +139,11 @@ class Resource
     /**
      * @var string
      *
-     * @Assert\NotBlank(message="资源密码不能为空")
      * @Assert\Length(
      *     max=255,
      *     maxMessage="资源密码不能超过255个字"
      * )
-     * @ORM\Column(name="code", type="string", length=255)
+     * @ORM\Column(name="code", type="string", length=255,nullable=true)
      */
     private $code;
 
@@ -299,29 +225,6 @@ class Resource
     public function getFace()
     {
         return $this->face;
-    }
-
-    /**
-     * Set picture
-     *
-     * @param string $picture
-     * @return Resource
-     */
-    public function setPicture($picture)
-    {
-        $this->picture = $picture;
-
-        return $this;
-    }
-
-    /**
-     * Get picture
-     *
-     * @return string
-     */
-    public function getPicture()
-    {
-        return $this->picture;
     }
 
     /**
@@ -485,49 +388,4 @@ class Resource
         return $this->code;
     }
 
-    /**
-     * Set uid
-     *
-     * @param string $uid
-     * @return Resource
-     */
-    public function setUid($uid)
-    {
-        $this->uid = $uid;
-
-        return $this;
-    }
-
-    /**
-     * Get uid
-     *
-     * @return string
-     */
-    public function getUid()
-    {
-        return $this->uid;
-    }
-
-    /**
-     * Set picture1
-     *
-     * @param string $picture1
-     * @return Resource
-     */
-    public function setPicture1($picture1)
-    {
-        $this->picture1 = $picture1;
-
-        return $this;
-    }
-
-    /**
-     * Get picture1
-     *
-     * @return string
-     */
-    public function getPicture1()
-    {
-        return $this->picture1;
-    }
 }

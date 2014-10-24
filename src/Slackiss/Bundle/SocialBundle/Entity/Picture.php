@@ -29,13 +29,7 @@ class Picture
         $this->enabled = true;
         $this->status = true;
         $this->remark = "";
-        $this->uid = uniqid(md5(rand()),true);
     }
-
-    /**
-     * @ORM\Column(type="string",length=255,name="uid",nullable=false)
-     */
-    protected $uid;
 
     /**
      * @var integer
@@ -324,26 +318,4 @@ class Picture
         return $this->description;
     }
 
-    /**
-     * Set uid
-     *
-     * @param string $uid
-     * @return Picture
-     */
-    public function setUid($uid)
-    {
-        $this->uid = $uid;
-
-        return $this;
-    }
-
-    /**
-     * Get uid
-     *
-     * @return string
-     */
-    public function getUid()
-    {
-        return $this->uid;
-    }
 }
